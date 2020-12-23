@@ -6,13 +6,10 @@ December 2020 the readme file created
 Bikeshare system
 
 ### Description
-Describe what your project is about and what it does
+a bike share system provider for many major cities in the United States, to uncover bike share usage patterns. this system will compare the usage between three large cities: Chicago, New York City, and Washington, DC.
 
 ### Files used
 we use three data files:
 chicago.csv
 new_york_city.csv
 washington.csv
-
-### Credits
-It's important to give proper credit. Add links to any repo that inspired you or blogposts you consulted.
