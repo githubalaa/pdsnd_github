@@ -7,8 +7,8 @@ CITY_DATA = { 'chicago': 'chicago.csv',
               'washington': 'washington.csv' }
 
 
-        
-def get_filters():    
+#display the filtering questions and get user inputs
+def get_filters():
     """
     Asks user to specify a city, month, and day to analyze.
 
@@ -25,12 +25,12 @@ def get_filters():
             if city in ['chicago','new york city','washington'] :
                 break
             else:
-                print("Sorry, your input should be: chicago new york city or washington")                            
-                
+                print("Sorry, your input should be: chicago new york city or washington")
+
         except ValueError:
             print("Sorry, your input is wrong")
             continue
- 
+
     #get user input for month (all, january, february, ... , june)
     while True:
         try:
@@ -38,12 +38,12 @@ def get_filters():
             if month in ['january', 'february', 'march', 'april', 'may', 'june','all'] :
                 break
             else:
-                print("Sorry, Which month do you mean january, february, march, april, may, june or all")            
-                
+                print("Sorry, Which month do you mean january, february, march, april, may, june or all")
+
         except ValueError:
             print("Sorry, your input is wrong")
             continue
-    
+
 
     #get user input for day of week (all, monday, tuesday, ... sunday)
     while True:
@@ -53,12 +53,12 @@ def get_filters():
                 break
             else:
                 print("Sorry, Which day do you mean sunday, monday, tuesday, wedensday, thuesday, saturday or all ")
-                
+
         except ValueError:
             print("Sorry, your input is wrong")
-            continue  
-    
-    
+            continue
+
+
     print('-'*40)
     return city, month, day
 
@@ -82,7 +82,7 @@ def load_data(city, month, day):
     df['month'] = df['Start Time'].dt.month
     df['day'] = df['Start Time'].dt.weekday_name
     df['hour'] = df['Start Time'].dt.hour
-    
+
     if month != 'all':
         month = month.index(month) + 1
         df = df[df['month'] == month]
@@ -134,7 +134,7 @@ def station_stats(df):
     popular_startend_station = startend.size().sort_values(ascending=False).head(1)
     print('Below are the most popular start and end station respectively\n', popular_startend_station)
 
-    
+
 
 
     print("\nThis took %s seconds." % (time.time() - start_time))
@@ -169,11 +169,11 @@ def user_stats(df):
     # Display counts of user types
     type_counts=df['User Type'].value_counts()
     print('What is the count of the users by the type?\n',type_counts)
-    
-    
+
+
     # Display counts of gender
     try:
-     gender_counts=df['Gender'].value_counts() 
+     gender_counts=df['Gender'].value_counts()
      print('What is the count of the users by the gender?\n',gender_counts)
 
     # Display earliest, most recent, and most common year of birth
@@ -181,19 +181,19 @@ def user_stats(df):
      recent = df['Birth Year'].max()
      earliest = df['Birth Year'].min()
      print('What is the earliest, most recent, and most popular year of birth respectively?\n')
-     print('The most recent:',recent,'\nThe earliest:', earliest,'\nThe most popular year of the birth:', most_common_year)              
-                
+     print('The most recent:',recent,'\nThe earliest:', earliest,'\nThe most popular year of the birth:', most_common_year)
+
     except:
         pass
-            
+
             # Display counts of genderhis took %s seconds." % (time.time() - start_time))
     print('-'*40)
-    
-    
-#display 5 lines of raw data 
+
+
+#display 5 lines of raw data
 def raw_data(df):
     """ display upon request by the user if they want to see 5 lines of raw data, display that data if the answer is 'yes', and continue these prompts and displays until the user says 'no'."""
-    
+
     start_loc=0
     preview = input('\nWould you like to view 5 rows of raw data? Enter yes or no.\n').lower().strip()
     while(preview == 'yes'):
